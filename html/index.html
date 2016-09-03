@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}PLANER{% endblock title %}
+
+{% block body %}
+    <h1>DNEVNI NAČRTOVALEC OPRAVKOV</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>DATUM</th>
+                <th>OPRAVEK</th>
+                <th>OPRAVLJENO</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in table %}
+                <tr>
+                    <th><a href="{{ task.key.id() }}">{{ task.date }}</a></th>
+                    <th><a href="{{ task.key.id() }}">{{ task.task }}</a></th>
+                    <th><a href="{{ task.key.id() }}">{{ task.completed }}</a></th>
+                </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+    <h2>NOV OPRAVEK:</h2>
+    <form action="/" method="post">
+        <div>
+            <h3>Do kdaj mora biti opravek končan?</h3>
+            <div>
+                <p>LETO:</p>
+                <input name="year" required>
+            </div>
+            <div>
+                <p>MESEC:</p>
+                <input name="month" required>
+            </div>
+            <div>
+                <p>DAN:</p>
+                <input name="day" required>
+            </div>
+        </div>
+        <div>
+            <h3>Navedi opravek:</h3>
+                <textarea name="task" required></textarea>
+        </div>
+        <div>
+            <button type="submit">DODAJ V TABELO --></button>
+        </div>
+    </form>
+{% endblock body %}
